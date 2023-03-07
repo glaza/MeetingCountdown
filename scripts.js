@@ -1,5 +1,10 @@
 
 const searchParams = new URLSearchParams(window.location.search)
+
+if (!searchParams.has("names") || !searchParams.has("end")) {
+    throw new Error("Arguments not provided")
+}
+
 const names = searchParams.get("names").split(",")
 const endParam = searchParams.get("end").split(":")
 
@@ -36,7 +41,11 @@ function removeName() {
 }
 
 function update() {
-    $(".countdown").text(Math.floor((targetMillis - nowMillis())/1000))
+    const remainingMillis = Math.floor(targetMillis - nowMillis())
+    const remainingMinutes = Math.floor(remainingMillis / (60 * 1000))
+    const remainingSeconds = Math.floor((remainingMillis % (60 * 1000)) / 1000)
+    const remainingSecondsString = remainingSeconds < 10 ? "0" + remainingSeconds : remainingSeconds
+    $(".countdown").text(`${remainingMinutes}:${remainingSecondsString}`)
 }
 
 function nowMillis() {
@@ -53,18 +62,17 @@ function computeTarget() {
 
 function shuffle(array) {
     let currentIndex = array.length
-  
+
     // While there remain elements to shuffle.
     while (currentIndex != 0) {
-  
+
         // Pick a remaining element.
         const randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
-    
+
         // And swap it with the current element.
         [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
-  
+
     return array;
 }
-  

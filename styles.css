@@ -1,15 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    color: bisque;
-    font-size: xx-large;
+    color: rgb(224, 224, 224);
+    font-size: 5em;
+    /*filter: drop-shadow(5px 5px 3px black);*/
+    text-align: center;
     background-image: url("background.png");
 }
 
 .center {
-    text-align: center;
-    
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.next {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #62b1df;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px rgb(95, 95, 95);
+}
+
+/* .next:hover {
+    background-color: #9dc3e2
+} */
+
+.next:active {
+    background-color: #62b1df;
+    box-shadow: 0 4px #666;
+    transform: translateY(6px);
 }
