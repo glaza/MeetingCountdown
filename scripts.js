@@ -8,21 +8,32 @@ endDate.setHours(endTime[0])
 endDate.setMinutes(endTime[1])
 endDate.setMilliseconds(0)
 
+let counterInterval = 0
+
 $(function() {
     $(".name").text(names[0])
     $(".next").click(removeName)
-    setInterval(update, 1000)
+    counterInterval = setInterval(update, 1000)
 })
 
 function removeName() {
-    names.splice(0, 1)
-    $(".name").text(names[0])
+    if (names.length !== 1) {
+        names.splice(0, 1)
+        $(".name").text(names[0])
+    } else {
+        clearInterval(counterInterval)
+        $(".name").text("Have a great day!")
+    }
 }
 
 function update() {
     const now = new Date()
     now.setMilliseconds(0)
+    const nowMillis = now.getTime()
+    const endMillis = endDate.getTime()
 
-    const remainingMillis = endDate.getTime() - now.getTime()
-    $(".countdown").text(remainingMillis/1000)
+    // I have to remember when the person started talking!
+    const remainingTotalMillis = endMillis - nowMillis
+    const personRemainningMillis = Math.floor(remainingTotalMillis / names.length)
+    $(".countdown").text(Math.floor(personRemainningMillis/1000))
 }
