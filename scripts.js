@@ -35,7 +35,7 @@ function removeName() {
     } else {
         clearInterval(counterInterval)
         $(".name").text("Have a great day!")
-        $(".countdown").text("")
+        $(".countdown").remove()
         $(".next").remove()
     }
 }
