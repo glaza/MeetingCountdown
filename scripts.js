@@ -25,6 +25,7 @@ function removeName() {
     if (names.length !== 1) {
         names.splice(0, 1)
         $(".name").text(names[0])
+        computeTarget()
         update()
     } else {
         clearInterval(counterInterval)
@@ -32,7 +33,6 @@ function removeName() {
         $(".countdown").text("")
         $(".next").remove()
     }
-    computeTarget()
 }
 
 function update() {
