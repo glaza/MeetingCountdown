@@ -14,6 +14,22 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.plenty {
+    color:rgb(40, 180, 40);
+}
+
+.low {
+    color:rgb(200, 200, 50);
+}
+
+.critical {
+    color:rgb(226, 135, 16);
+}
+
+.gone {
+    color:rgb(200, 0, 0);
+}
+
 .next {
     display: inline-block;
     padding: 15px 25px;
@@ -29,10 +45,6 @@ body {
     border-radius: 15px;
     box-shadow: 0 10px rgb(95, 95, 95);
 }
-
-/* .next:hover {
-    background-color: #9dc3e2
-} */
 
 .next:active {
     background-color: #62b1df;

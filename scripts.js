@@ -8,6 +8,7 @@ if (!searchParams.has("names") || !searchParams.has("end")) {
 const names = searchParams.get("names").split(",")
 const endParam = searchParams.get("end").split(":")
 
+
 const end = new Date()
 end.setHours(endParam[0])
 end.setMinutes(endParam[1])
@@ -41,11 +42,25 @@ function removeName() {
 }
 
 function update() {
-    const remainingMillis = Math.floor(targetMillis - nowMillis())
+    const remainingMillisExact = targetMillis - nowMillis()
+    const remainingMillis = Math.floor(Math.abs(remainingMillisExact))
     const remainingMinutes = Math.floor(remainingMillis / (60 * 1000))
     const remainingSeconds = Math.floor((remainingMillis % (60 * 1000)) / 1000)
     const remainingSecondsString = remainingSeconds < 10 ? "0" + remainingSeconds : remainingSeconds
+    
     $(".countdown").text(`${remainingMinutes}:${remainingSecondsString}`)
+    
+    $(".countdown").removeClass(["plenty", "low", "critical", "gone"])
+    if (remainingMillisExact > 30 * 1000) {
+        $(".countdown").addClass("plenty")
+    } else if (remainingMillisExact > 10 * 1000) {
+        $(".countdown").addClass("low")
+    } else if (remainingMillisExact > 0) {
+        $(".countdown").addClass("critical")
+    } else {
+        $(".countdown").addClass("gone")
+    }
+    
 }
 
 function nowMillis() {
